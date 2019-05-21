@@ -13,9 +13,10 @@ app.use(bodyParser.json())
 
 // Routes
 require('./routes/userRoutes')(app)
+require('./routes/useFamilia')(app)
 
 // static files
 
 app.listen(app.get('port'), () => {
-  console.log('server on port 3000')
+  console.log('SERVER ON PORT 3000')
 })

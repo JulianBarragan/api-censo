@@ -2,17 +2,17 @@ const mysql = require('mysql')
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  // host: '192.168.0.17',
+  // host: 'http://192.168.0.17',
   user: 'root',
   password: '',
-  database: 'testapi'
+  database: 'censoTeontepec'
 })
 
 let userModel = {}
 
 userModel.getUser = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM users ORDER BY id',
+    connection.query('SELECT * FROM usuarios WHERE estatus = 1 ORDER BY id_usuario',
       (err, rows) => {
         if (err) {
           throw err
@@ -26,7 +26,7 @@ userModel.getUser = (callback) => {
 
 userModel.insertUser = (userData, callback) => {
   if (connection) {
-    connection.query('INSERT INTO users SET ?', userData,
+    connection.query('INSERT INTO usuarios SET ?', userData,
       (err, result) => {
         if (err) {
           throw err
@@ -43,11 +43,14 @@ userModel.insertUser = (userData, callback) => {
 userModel.updateUser = (userData, callback) => {
   if (connection) {
     const sql = `
-      UPDATE users SET 
-      username = ${connection.escape(userData.username)},
-      password = ${connection.escape(userData.password)},
-      email = ${connection.escape(userData.email)} 
-      WHERE id = ${connection.escape(userData.id)}
+      UPDATE usuarios SET 
+      nombre = ${connection.escape(userData.nombre)},
+      a_paterno = ${connection.escape(userData.a_paterno)},
+      a_materno = ${connection.escape(userData.a_materno)},
+      roll = ${connection.escape(userData.roll)},
+      contrasena = ${connection.escape(userData.contrasena)},
+      telefono = ${connection.escape(userData.telefono)} 
+      WHERE id_usuario = ${connection.escape(userData.id_usuario)}
     `
     connection.query(sql, (err, result) => {
       if (err) {
@@ -61,25 +64,50 @@ userModel.updateUser = (userData, callback) => {
   }
 }
 
+// userModel.deleteUser = (id, callback) => {
+//   if (connection) {
+//     let sqlExists =
+//       `SELECT * FROM usuarios WHERE id_usuario = ${connection.escape(id)}`
+//     connection.query(sqlExists, (err, row) => {
+//       if (row) {
+//         let sql = `DELETE FROM usuarios WHERE id_usuario = ${connection.escape(id)}`
+//         connection.query(sql, (err, result) => {
+//           if (err) {
+//             throw err
+//           } else {
+//             callback(null, {
+//               'msg': 'Deleted'
+//             })
+//           }
+//         })
+//       } else {
+//         callback(null, {
+//           'msg': 'not Exists'
+//         })
+//       }
+//     })
+//   }
+// }
+
 userModel.deleteUser = (id, callback) => {
   if (connection) {
     let sqlExists =
-      `SELECT * FROM users WHERE id = ${connection.escape(id)}`
+      `SELECT * FROM usuarios WHERE id_usuario = ${connection.escape(id)}`
     connection.query(sqlExists, (err, row) => {
       if (row) {
-        let sql = `DELETE FROM users WHERE id = ${connection.escape(id)}`
+        let sql = `UPDATE usuarios SET estatus = 0 WHERE id_usuario = ${connection.escape(id)}`
         connection.query(sql, (err, result) => {
           if (err) {
             throw err
           } else {
             callback(null, {
-              "msg": "Deleted"
+              'msg': 'Deleted'
             })
           }
         })
       } else {
         callback(null, {
-          "msg": "not Exists"
+          'msg': 'not Exists'
         })
       }
     })
