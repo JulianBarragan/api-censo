@@ -13,7 +13,10 @@ app.use(bodyParser.json())
 
 // Routes
 require('./routes/userRoutes')(app)
-require('./routes/useFamilia')(app)
+require('./routes/familiaRoutes')(app)
+require('./routes/estudiosRoutes')(app)
+require('./routes/estadoCicilRoutes')(app)
+require('./routes/ocupacionRoutes')(app)
 
 // static files
 

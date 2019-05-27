@@ -1,11 +1,11 @@
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({
-  // host: 'localhost',
-  host: 'http://db4free.net:3306',
-  user: 'rootbase',
-  password: 'qwerty123',
-  database: 'censoteontepec'
+  host: 'localhost',
+  // host: 'http://db4free.net:3306',
+  user: 'root',
+  password: '',
+  database: 'censoTeontepec'
 })
 
 let personasModel = {}
@@ -58,7 +58,7 @@ personasModel.updateUser = (userData, callback) => {
       id_usuario = ${connection.escape(userData.id_usuario)} 
       WHERE id_persona = ${connection.escape(userData.id_persona)}
     `
-    connection.query(sql, (err, result) => {
+    connection.query(sql, (err, _result) => {
       if (err) {
         throw err
       } else {
@@ -74,10 +74,10 @@ personasModel.deleteUser = (id, callback) => {
   if (connection) {
     let sqlExists =
       `SELECT * FROM personas WHERE id_persona = ${connection.escape(id)}`
-    connection.query(sqlExists, (err, row) => {
+    connection.query(sqlExists, (_err, row) => {
       if (row) {
         let sql = `UPDATE personas SET estatus = 0 WHERE id_persona = ${connection.escape(id)}`
-        connection.query(sql, (err, result) => {
+        connection.query(sql, (err, _result) => {
           if (err) {
             throw err
           } else {

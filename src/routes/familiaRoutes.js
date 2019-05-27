@@ -1,8 +1,8 @@
 const User = require('../models/personas')
 
 module.exports = app => {
-  app.get('/personas', (req, res) => {
-    User.getUser((err, data) => {
+  app.get('/personas', (_req, res) => {
+    User.getUser((_err, data) => {
       res.status(200).json(data)
     })
   })
@@ -24,10 +24,10 @@ module.exports = app => {
       id_usuario: req.body.id_usuario,
       estatus: null
     }
-    User.insertPersona(userData, (err, data) => {
+    User.insertPersona(userData, (_err, data) => {
       if (data && data.insertId) {
-          console.log(data);          
-          res.json({
+        console.log(data)
+        res.json({
           success: true,
           msg: 'Persona Insertada',
           data: data
@@ -58,7 +58,7 @@ module.exports = app => {
       id_usuario: req.body.id_usuario,
       estatus: null
     }
-    User.updateUser(userData, (err, data) => {
+    User.updateUser(userData, (_err, data) => {
       if (data && data.msg) {
         res.json({ data })
       } else {
@@ -71,7 +71,7 @@ module.exports = app => {
   })
 
   app.delete('/users/:id', (req, res) => {
-    User.deleteUser(req.params.id, (err, data) => {
+    User.deleteUser(req.params.id, (_err, data) => {
       if (data && data.msg === 'Deleted' || data.msg === 'not Exists') {
         res.json({
           success: 'true',
@@ -84,5 +84,4 @@ module.exports = app => {
       }
     })
   })
-  
 }

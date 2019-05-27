@@ -52,7 +52,7 @@ userModel.updateUser = (userData, callback) => {
       telefono = ${connection.escape(userData.telefono)} 
       WHERE id_usuario = ${connection.escape(userData.id_usuario)}
     `
-    connection.query(sql, (err, result) => {
+    connection.query(sql, (err, _result) => {
       if (err) {
         throw err
       } else {
@@ -93,10 +93,10 @@ userModel.deleteUser = (id, callback) => {
   if (connection) {
     let sqlExists =
       `SELECT * FROM usuarios WHERE id_usuario = ${connection.escape(id)}`
-    connection.query(sqlExists, (err, row) => {
+    connection.query(sqlExists, (_err, row) => {
       if (row) {
         let sql = `UPDATE usuarios SET estatus = 0 WHERE id_usuario = ${connection.escape(id)}`
-        connection.query(sql, (err, result) => {
+        connection.query(sql, (err, _result) => {
           if (err) {
             throw err
           } else {

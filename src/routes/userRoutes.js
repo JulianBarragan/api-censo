@@ -1,8 +1,8 @@
 const User = require('../models/user')
 
 module.exports = app => {
-  app.get('/users', (req, res) => {
-    User.getUser((err, data) => {
+  app.get('/users', (_req, res) => {
+    User.getUser((_err, data) => {
       res.status(200).json(data)
     })
   })
@@ -18,9 +18,9 @@ module.exports = app => {
       telefono: req.body.telefono,
       estatus: null
     }
-    User.insertUser(userData, (err, data) => {
+    User.insertUser(userData, (_err, data) => {
       if (data && data.insertId) {
-        console.log(data);
+        console.log(data)
         res.json({
           success: true,
           msg: 'Usuario Insertado',
@@ -46,7 +46,7 @@ module.exports = app => {
       telefono: req.body.telefono,
       estatus: null
     }
-    User.updateUser(userData, (err, data) => {
+    User.updateUser(userData, (_err, data) => {
       if (data && data.msg) {
         res.json({ data })
       } else {
@@ -59,7 +59,7 @@ module.exports = app => {
   })
 
   app.delete('/users/:id', (req, res) => {
-    User.deleteUser(req.params.id, (err, data) => {
+    User.deleteUser(req.params.id, (_err, data) => {
       if (data && data.msg === 'Deleted' || data.msg === 'not Exists') {
         res.json({
           success: 'true',
