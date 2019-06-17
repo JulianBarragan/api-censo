@@ -14,6 +14,7 @@ module.exports = app => {
       segundo_nombre: req.body.segundo_nombre,
       a_paterno: req.body.a_paterno,
       a_materno: req.body.a_materno,
+      sexo: req.body.sexo,
       fecha_nacimiento: req.body.fecha_nacimiento,
       id_grado_estudios: req.body.id_grado_estudios,
       escuela: req.body.escuela,
@@ -72,7 +73,7 @@ module.exports = app => {
 
   app.delete('/users/:id', (req, res) => {
     User.deleteUser(req.params.id, (_err, data) => {
-      if (data && data.msg === 'Deleted' || data.msg === 'not Exists') {
+      if ((data && data.msg) === 'Deleted' || data.msg === 'not Exists') {
         res.json({
           success: 'true',
           data

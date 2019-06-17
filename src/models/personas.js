@@ -1,15 +1,8 @@
-const mysql = require('mysql')
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  // host: 'http://db4free.net:3306',
-  user: 'root',
-  password: '',
-  database: 'censoTeontepec'
-})
+const connection = require('../server/connection')
 
 let personasModel = {}
 
+// CONSULTA PERSONAS EN GENERAL
 personasModel.getUser = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM personas WHERE estatus = 1 ORDER BY id_persona',
@@ -48,6 +41,7 @@ personasModel.updateUser = (userData, callback) => {
       segundo_nombre = ${connection.escape(userData.segundo_nombre)},
       a_paterno = ${connection.escape(userData.a_paterno)},
       a_materno = ${connection.escape(userData.a_materno)},
+      sexo = ${connection.escape(userData.sexo)},
       fecha_nacimiento = ${connection.escape(userData.fecha_nacimiento)},
       id_grado_estudios = ${connection.escape(userData.id_grado_estudios)},
       escuela = ${connection.escape(userData.escuela)},

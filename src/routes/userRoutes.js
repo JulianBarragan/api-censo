@@ -15,8 +15,7 @@ module.exports = app => {
       a_materno: req.body.a_materno,
       roll: req.body.roll,
       contrasena: req.body.contrasena,
-      telefono: req.body.telefono,
-      estatus: null
+      telefono: req.body.telefono
     }
     User.insertUser(userData, (_err, data) => {
       if (data && data.insertId) {
@@ -60,7 +59,7 @@ module.exports = app => {
 
   app.delete('/users/:id', (req, res) => {
     User.deleteUser(req.params.id, (_err, data) => {
-      if (data && data.msg === 'Deleted' || data.msg === 'not Exists') {
+      if ((data && data.msg) === 'Deleted' || data.msg === 'not Exists') {
         res.json({
           success: 'true',
           data

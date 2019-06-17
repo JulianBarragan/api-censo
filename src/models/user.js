@@ -1,12 +1,12 @@
-const mysql = require('mysql')
+// const mysql = require('mysql')
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  // host: 'http://192.168.0.17',
-  user: 'root',
-  password: '',
-  database: 'censoTeontepec'
-})
+// const connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database: 'censoTeontepec'
+// })
+const connection = require('../server/connection')
 
 let userModel = {}
 
@@ -52,12 +52,12 @@ userModel.updateUser = (userData, callback) => {
       telefono = ${connection.escape(userData.telefono)} 
       WHERE id_usuario = ${connection.escape(userData.id_usuario)}
     `
-    connection.query(sql, (err, _result) => {
+    connection.query(sql, (err, result) => {
       if (err) {
         throw err
       } else {
         callback(null, {
-          'msg': 'success'
+          'msg': `Usuario Actualizado`
         })
       }
     })
