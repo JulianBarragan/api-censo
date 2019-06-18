@@ -13,9 +13,9 @@ app.set('port', process.env.PORT || 3000)
 
 // CORS FUNCTIONS
 app.use(function (req, res, next) {
-  var err = new Error('Not Found')
-  err.status = 404
-  next(err)
+  // var err = new Error('Not Found')
+  // err.status = 404
+  // next(err)
 
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -32,11 +32,11 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//   next()
+// })
 
 // Middlewares
 app.use(morgan('dev'))
