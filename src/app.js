@@ -11,23 +11,7 @@ app.get('/', (req, res) => {
 // settings
 app.set('port', process.env.PORT || 3000)
 
-// Middlewares
-app.use(morgan('dev'))
-app.use(bodyParser.json())
-
-// Routes
-require('./routes/userRoutes')(app)
-require('./routes/personasRoutes')(app)
-require('./routes/familiasRoutes')(app)
-require('./routes/estudiosRoutes')(app)
-require('./routes/estadoCicilRoutes')(app)
-require('./routes/ocupacionRoutes')(app)
-
-// static files
-app.listen(app.get('port'), () => {
-  console.log('Server started at http://localhost:3000')
-})
-
+// CORS FUNCTIONS
 app.use(function (req, res, next) {
   var err = new Error('Not Found')
   err.status = 404
@@ -52,4 +36,21 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
+})
+
+// Middlewares
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+
+// Routes
+require('./routes/userRoutes')(app)
+require('./routes/personasRoutes')(app)
+require('./routes/familiasRoutes')(app)
+require('./routes/estudiosRoutes')(app)
+require('./routes/estadoCicilRoutes')(app)
+require('./routes/ocupacionRoutes')(app)
+
+// static files
+app.listen(app.get('port'), () => {
+  console.log('Server started at http://localhost:3000')
 })
