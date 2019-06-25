@@ -10,8 +10,16 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to API REST')
 })
 
-// settings
-app.set('port', process.env.PORT || 3000)
+// // settings
+// app.set('port', process.env.PORT || 3000)
+// // static files
+// app.listen(app.get('port'), () => {
+//   console.log('Server started at http://localhost:3000')
+// })
+let server = app.listen(process.env.PORT || 3000, function () {
+  let port = server.address().port
+  console.log('Express is working on port' + port)
+})
 
 // CORS FUNCTIONS
 app.use(function (req, res, next) {
@@ -52,8 +60,3 @@ require('./routes/familiasRoutes')(app)
 require('./routes/estudiosRoutes')(app)
 require('./routes/estadoCicilRoutes')(app)
 require('./routes/ocupacionRoutes')(app)
-
-// static files
-app.listen(app.get('port'), () => {
-  console.log('Server started at http://localhost:3000')
-})
