@@ -16,9 +16,11 @@ app.get('/', (req, res) => {
 // app.listen(app.get('port'), () => {
 //   console.log('Server started at http://localhost:3000')
 // })
+
+// settings
 let server = app.listen(process.env.PORT || 3000, function () {
   let port = server.address().port
-  console.log('Express is working on port' + port)
+  console.log('Express is working on port ' + port)
 })
 
 // CORS FUNCTIONS
