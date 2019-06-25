@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 // })
 
 // settings
-let server = app.listen(process.env.PORT || 3000, function () {
+let server = app.listen(process.env.PORT || 3000, () => {
   let port = server.address().port
   console.log('Express is working on port ' + port)
 })
