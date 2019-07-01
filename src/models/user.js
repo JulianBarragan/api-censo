@@ -21,8 +21,8 @@ userModel.getUser = (callback) => {
         }
       }
     )
-    connection.close()
   }
+  connection.end()
 }
 
 userModel.insertUser = (userData, callback) => {
@@ -38,8 +38,8 @@ userModel.insertUser = (userData, callback) => {
         }
       }
     )
-    connection.close()
   }
+  connection.end()
 }
 
 userModel.updateUser = (userData, callback) => {
@@ -61,7 +61,6 @@ userModel.updateUser = (userData, callback) => {
         callback(null, {
           'msg': `Usuario Actualizado`
         })
-        connection.close()
       }
     })
   }
@@ -114,7 +113,6 @@ userModel.deleteUser = (id, callback) => {
         })
       }
     })
-    connection.close()
   }
 }
 module.exports = userModel
