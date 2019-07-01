@@ -3,9 +3,9 @@ const mysql = require('mysql')
 const connection = mysql.createConnection({
   // host: 'localhost',
   host: 'us-cdbr-iron-east-02.cleardb.net',
-  user: 'bb733aaf7c9316',
-  password: 'e28c0c28',
-  database: 'heroku_fddad1e74a608e2'
+  user: 'b3537aa37ae113',
+  password: '971809f6',
+  database: 'heroku_46a1df53f8ac899'
 })
 
 module.exports = connection
