@@ -10,13 +10,6 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to API REST')
 })
 
-// // settings
-// app.set('port', process.env.PORT || 3000)
-// // static files
-// app.listen(app.get('port'), () => {
-//   console.log('Server started at http://localhost:3000')
-// })
-
 // settings
 let server = app.listen(process.env.PORT || 3000, () => {
   let port = server.address().port
@@ -25,10 +18,6 @@ let server = app.listen(process.env.PORT || 3000, () => {
 
 // CORS FUNCTIONS
 app.use(function (req, res, next) {
-  // var err = new Error('Not Found')
-  // err.status = 404
-  // next(err)
-
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -37,8 +26,6 @@ app.use(function (req, res, next) {
 
   // Request headers you wish to allow
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization')
-
-  // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   // Pass to next layer of middleware
   next()
