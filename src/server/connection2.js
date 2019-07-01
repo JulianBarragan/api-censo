@@ -1,16 +1,13 @@
 const mysql = require('mysql')
 
-var dbConfig = {
-  host: 'us-cdbr-iron-east-02.cleardb.net',
-  user: 'b3537aa37ae113',
-  password: '971809f6',
-  database: 'heroku_46a1df53f8ac899'
-}
-
-var connection
-
+let connection = null
 function handleDisconnect () {
-  connection = mysql.createConnection(dbConfig) // Recreate the connection, since
+  connection = mysql.createConnection({
+    host: 'us-cdbr-iron-east-02.cleardb.net',
+    user: 'b3537aa37ae113',
+    password: '971809f6',
+    database: 'heroku_46a1df53f8ac899'
+  }) // Recreate the connection, since
   // the old one cannot be reused.
 
   connection.connect(function (err) { // The server is either down
@@ -29,10 +26,9 @@ function handleDisconnect () {
     }
   })
 }
-
 handleDisconnect()
+setInterval(function () {
+  connection.query('SELECT 1')
+}, 5000)
 
-module.exports = {
-  connection,
-  dbConfig
-}
+module.exports = connection
