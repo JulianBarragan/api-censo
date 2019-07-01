@@ -1,4 +1,3 @@
-// const mysql = require('mysql')
 
 // const connection = mysql.createConnection({
 //   host: 'localhost',
@@ -22,11 +21,9 @@ userModel.getUser = (callback) => {
       }
     )
   }
-  connection.end()
 }
 
 userModel.insertUser = (userData, callback) => {
-  connection.connect()
   if (connection) {
     connection.query('INSERT INTO usuarios SET ?', userData,
       (err, result) => {
@@ -40,11 +37,9 @@ userModel.insertUser = (userData, callback) => {
       }
     )
   }
-  connection.end()
 }
 
 userModel.updateUser = (userData, callback) => {
-  connection.connect()
   if (connection) {
     const sql = `
       UPDATE usuarios SET 
