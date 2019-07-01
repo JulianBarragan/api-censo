@@ -10,11 +10,8 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to API REST')
 })
 
-// settings
-let server = app.listen(process.env.PORT || 3000, () => {
-  let port = server.address().port
-  console.log('Express is working on port ' + port)
-})
+// Settings
+app.set('port', process.env.PORT || 3000);
 
 // CORS FUNCTIONS
 app.use(function (req, res, next) {
@@ -49,3 +46,8 @@ require('./routes/familiasRoutes')(app)
 require('./routes/estudiosRoutes')(app)
 require('./routes/estadoCicilRoutes')(app)
 require('./routes/ocupacionRoutes')(app)
+
+// Starting the server
+app.listen(app.get('port'), () => {
+  console.log(`Server on port ${app.get('port')}`)
+})
