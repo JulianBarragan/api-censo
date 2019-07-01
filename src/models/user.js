@@ -22,6 +22,7 @@ userModel.getUser = (callback) => {
       }
     )
   }
+  connection.close()
 }
 
 userModel.insertUser = (userData, callback) => {
@@ -38,6 +39,7 @@ userModel.insertUser = (userData, callback) => {
       }
     )
   }
+  connection.close()
 }
 
 userModel.updateUser = (userData, callback) => {
@@ -62,6 +64,7 @@ userModel.updateUser = (userData, callback) => {
       }
     })
   }
+  connection.close()
 }
 
 // userModel.deleteUser = (id, callback) => {
@@ -112,5 +115,6 @@ userModel.deleteUser = (id, callback) => {
       }
     })
   }
+  connection.close()
 }
 module.exports = userModel
