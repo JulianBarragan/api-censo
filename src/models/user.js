@@ -1,10 +1,4 @@
 
-// const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: '',
-//   database: 'censoTeontepec'
-// })
 const connection = require('../server/connection')
 
 let userModel = {}
