@@ -8,6 +8,4 @@ const connection = mysql.createConnection({
   database: 'heroku_fddad1e74a608e2'
 })
 
-connection.connect()
-
 module.exports = connection
