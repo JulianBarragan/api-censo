@@ -1,6 +1,7 @@
 const mysql = require('mysql')
 
 let connection = null
+
 function handleDisconnect () {
   connection = mysql.createConnection({
     host: 'us-cdbr-iron-east-02.cleardb.net',
@@ -17,6 +18,7 @@ function handleDisconnect () {
     } // to avoid a hot loop, and to allow our node script to
   }) // process asynchronous requests in the meantime.
   // If you're also serving http, display a 503 error.
+
   connection.on('error', function (err) {
     console.log('db error', err)
     if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
@@ -26,6 +28,7 @@ function handleDisconnect () {
     }
   })
 }
+
 handleDisconnect()
 setInterval(function () {
   connection.query('SELECT 1')

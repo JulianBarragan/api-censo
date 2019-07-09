@@ -47,6 +47,7 @@ require('./routes/familiasRoutes')(app)
 require('./routes/estudiosRoutes')(app)
 require('./routes/estadoCicilRoutes')(app)
 require('./routes/ocupacionRoutes')(app)
+require('./routes/insertarEncuestaRoutes')(app)
 
 // Starting the server
 app.listen(app.get('port'), () => {
