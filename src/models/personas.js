@@ -3,9 +3,22 @@ const connection = require('../server/connection')
 let personasModel = {}
 
 // CONSULTA PERSONAS EN GENERAL
+// personasModel.getUser = (callback) => {
+//   if (connection) {
+//     connection.query('SELECT * FROM personas WHERE estatus = 1 ORDER BY id_persona',
+//       (err, rows) => {
+//         if (err) {
+//           throw err
+//         } else {
+//           callback(null, rows)
+//         }
+//       }
+//     )
+//   }
+// }
 personasModel.getUser = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM personas WHERE estatus = 1 ORDER BY id_persona',
+    connection.query('SELECT personas.primer_nombre, personas.segundo_nombre, personas.a_paterno, personas.a_materno, personas.sexo, personas.fecha_nacimiento, personas.id_grado_estudios, personas.escuela, personas.id_ocupacion, personas.id_estado_civil, personas.lugar_origen, personas.telefono, personas.fecha_registro, personas.id_familia, familias.nombre_familia, familias.id_colonia, familias.direccion, familias.calle_lateral_derecha, familias.calle_lateral_izquierda FROM personas INNER JOIN familias ON id_persona = id_persona',
       (err, rows) => {
         if (err) {
           throw err
