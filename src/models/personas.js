@@ -18,7 +18,7 @@ let personasModel = {}
 // }
 personasModel.getUser = (callback) => {
   if (connection) {
-    connection.query('SELECT personas.primer_nombre, personas.segundo_nombre, personas.a_paterno, personas.a_materno, personas.sexo, personas.fecha_nacimiento, personas.id_grado_estudios, personas.escuela, personas.id_ocupacion, personas.id_estado_civil, personas.lugar_origen, personas.telefono, personas.fecha_registro, personas.id_familia, familias.nombre_familia, familias.id_colonia, familias.direccion, familias.calle_lateral_derecha, familias.calle_lateral_izquierda FROM personas INNER JOIN familias ON id_persona = id_persona',
+    connection.query('SELECT personas.primer_nombre, personas.segundo_nombre, personas.a_paterno, personas.a_materno, personas.sexo, personas.fecha_nacimiento, personas.id_grado_estudios, personas.escuela, personas.id_ocupacion, personas.id_estado_civil, personas.lugar_origen, personas.telefono, personas.fecha_registro, personas.id_familia, familias.nombre_familia, familias.id_colonia, barrios_colonias.colonia, familias.direccion, familias.calle_lateral_derecha, familias.calle_lateral_izquierda FROM personas INNER JOIN familias ON id_persona = id_persona INNER JOIN barrios_colonias ON familias.id_colonia = barrios_colonias.id_colonia',
       (err, rows) => {
         if (err) {
           throw err
