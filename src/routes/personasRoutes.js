@@ -7,6 +7,12 @@ module.exports = app => {
     })
   })
 
+  app.get('/personasIn', (_req, res) => {
+    User.getUserInner((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
+
   app.post('/personas', (req, res) => {
     const userData = {
       id_persona: null,
