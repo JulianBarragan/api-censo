@@ -18,4 +18,16 @@ module.exports = app => {
       res.status(200).json(data)
     })
   })
+
+  app.get('/rutas/colonias', (_req, res) => {
+    Rutas.getColonias((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
+
+  app.get('/rutas/servicios_basicos', (_req, res) => {
+    Rutas.getServiciosBasicos((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 }

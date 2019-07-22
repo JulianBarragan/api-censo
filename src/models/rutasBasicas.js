@@ -44,4 +44,32 @@ rutasBasicas.getEstudios = (callback) => {
   }
 }
 
+rutasBasicas.getServiciosBasicos = (callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM servicios_basicos ORDER BY id_servicio_basico',
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.getColonias = (callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM barrios_colonias ORDER BY id_colonia',
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
 module.exports = rutasBasicas
