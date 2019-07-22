@@ -44,9 +44,7 @@ app.use(cors())
 require('./routes/userRoutes')(app)
 require('./routes/personasRoutes')(app)
 require('./routes/familiasRoutes')(app)
-require('./routes/estudiosRoutes')(app)
-require('./routes/estadoCicilRoutes')(app)
-require('./routes/ocupacionRoutes')(app)
+require('./routes/rutasBasicasRoutes')(app)
 require('./routes/insertarEncuestaRoutes')(app)
 
 // Starting the server
