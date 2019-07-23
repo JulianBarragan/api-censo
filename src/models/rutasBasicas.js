@@ -103,4 +103,89 @@ rutasBasicas.postColonias = (userData, callback) => {
   }
 }
 
+// ============================
+//  Comercios
+// ============================
+rutasBasicas.getComercios = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM comercios ORDER BY id_comercio', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Ganaderia
+// ============================
+rutasBasicas.getGanado = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM ganaderia ORDER BY id_ganado', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Hoticultura
+// ============================
+rutasBasicas.getHoticultura = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM hoticultura ORDER BY id_hoticultura', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Problemas Comunidad
+// ============================
+rutasBasicas.getProblemasComunidad = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM problemas_comunidad ORDER BY id_problema', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Servicios de Importancia
+// ============================
+rutasBasicas.getServiciosImportancia = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM servicios_de_importancia ORDER BY id_servicio', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
 module.exports = rutasBasicas
