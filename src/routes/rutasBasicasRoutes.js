@@ -40,8 +40,7 @@ module.exports = app => {
   app.post('/rutas/colonias', (req, res) => {
     const userData = {
       id_colonia: null,
-      colonia: req.body.colonia,
-      estatus: req.body.estatus
+      colonia: req.body.colonia
     }
     Rutas.postColonias(userData, (_err, data) => {
       if (data && data.insertId) {
