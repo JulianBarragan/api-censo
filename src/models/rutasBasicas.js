@@ -2,6 +2,9 @@ const connection = require('../server/connection')
 
 let rutasBasicas = {}
 
+// ============================
+//  Estado Civil
+// ============================
 rutasBasicas.getCivil = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM estado_civil ORDER BY id_estado_civil',
@@ -16,6 +19,9 @@ rutasBasicas.getCivil = (callback) => {
   }
 }
 
+// ============================
+//  Ocupaciones
+// ============================
 rutasBasicas.getOcupacion = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM ocupacion ORDER BY id_ocupacion',
@@ -30,6 +36,9 @@ rutasBasicas.getOcupacion = (callback) => {
   }
 }
 
+// ============================
+//  Grado Estudios
+// ============================
 rutasBasicas.getEstudios = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM grado_estudios ORDER BY id_grado_estudios',
@@ -44,6 +53,9 @@ rutasBasicas.getEstudios = (callback) => {
   }
 }
 
+// ============================
+//  Servicios Basicos
+// ============================
 rutasBasicas.getServiciosBasicos = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM servicios_basicos ORDER BY id_servicio_basico',
@@ -58,6 +70,9 @@ rutasBasicas.getServiciosBasicos = (callback) => {
   }
 }
 
+// ============================
+//  Barrios Colonias
+// ============================
 rutasBasicas.getColonias = (callback) => {
   if (connection) {
     connection.query('SELECT * FROM barrios_colonias ORDER BY id_colonia',
@@ -66,6 +81,22 @@ rutasBasicas.getColonias = (callback) => {
           throw err
         } else {
           callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.postColonias = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO barrios_colonias SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
         }
       }
     )
