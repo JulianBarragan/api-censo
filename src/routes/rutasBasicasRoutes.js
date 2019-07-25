@@ -242,7 +242,7 @@ module.exports = app => {
       id_familia: req.body.id_familia,
       cantidad_hectareas: req.body.cantidad_hectareas
     }
-    Rutas.updateColonias(userData, (_err, data) => {
+    Rutas.updateProductosAgricolas(userData, (_err, data) => {
       if (data && data.msg) {
         res.json({ data })
       } else {
