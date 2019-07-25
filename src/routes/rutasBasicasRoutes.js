@@ -189,14 +189,6 @@ module.exports = app => {
       }
     })
   })
-  // ============================
-  //  Servicios Basicos
-  // ============================
-  app.get('/rutas/servicios_basicos', (_req, res) => {
-    Rutas.getServiciosBasicos((_err, data) => {
-      res.status(200).json(data)
-    })
-  })
 
   // ============================
   //  Barrios Colonias
@@ -377,3 +369,7 @@ module.exports = app => {
     })
   })
 }
+
+// ============================
+//  Tablas Fuertes
+// ============================
