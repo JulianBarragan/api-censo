@@ -233,9 +233,9 @@ module.exports = app => {
     })
   })
 
-  app.put('/rutas/productos_agricolas/:id_productos_agricolas', (req, res) => {
+  app.put('/rutas/productos_agricolas/:id_producto', (req, res) => {
     const userData = {
-      id_productos_agricolas: req.params.id_productos_agricolas,
+      id_producto: req.params.id_producto,
       producto: req.body.producto,
       tipo_riego: req.body.tipo_riego,
       tipo_terreno: req.body.tipo_terreno,
