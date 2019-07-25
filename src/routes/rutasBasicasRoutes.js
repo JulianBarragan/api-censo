@@ -73,6 +73,60 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/ocupaciones', (req, res) => {
+    const userData = {
+      id_estado_civil: null,
+      ocupacion: req.body.ocupacion
+    }
+    Rutas.postOcupacion(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Ocupacion Insertada',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
+  app.put('/rutas/ocupaciones/:id_ocupacion', (req, res) => {
+    const userData = {
+      id_ocupacion: req.params.id_ocupacion,
+      ocupacion: req.body.ocupacion
+    }
+    Rutas.updateOcupacion(userData, (_err, data) => {
+      if (data && data.msg) {
+        res.json({ data })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
+  app.delete('/rutas/ocupaciones/:id', (req, res) => {
+    Rutas.deleteOcupacion(req.params.id, (_err, data) => {
+      if ((data && data.msg) === 'Deleted' || data.msg === 'not Exists') {
+        res.json({
+          success: 'true',
+          data
+        })
+      } else {
+        res.status(500).json({
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Estudios
   // ============================

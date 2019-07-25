@@ -5,7 +5,7 @@ let userModel = {}
 
 userModel.getUser = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM usuarios WHERE estatus = 1 ORDER BY id_usuario',
+    connection.query('SELECT * FROM usuarios WHERE estatus = 1 ORDER BY id_usuario ASC',
       (err, rows) => {
         if (err) {
           throw err

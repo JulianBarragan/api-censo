@@ -96,12 +96,72 @@ rutasBasicas.getOcupacion = (callback) => {
   }
 }
 
+rutasBasicas.postOcupacion = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO ocupacion SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.updateOcupacion = (userData, callback) => {
+  if (connection) {
+    const sql = `
+      UPDATE ocupacion SET 
+      ocupacion = ${connection.escape(userData.ocupacion)}
+      WHERE id_ocupacion = ${connection.escape(userData.id_ocupacion)}
+    `
+    connection.query(sql, (err, result) => {
+      if (err) {
+        throw err
+      } else {
+        callback(null, {
+          'msg': `Ocupacion Actualizada`
+        })
+      }
+    })
+  }
+}
+
+rutasBasicas.deleteOcupacion = (id, callback) => {
+  if (connection) {
+    let sqlExists =
+      `SELECT * FROM ocupacion WHERE id_ocupacion = ${connection.escape(id)}`
+    connection.query(sqlExists, (_err, row) => {
+      if (row) {
+        let sql = `UPDATE ocupacion SET estatus = 0 WHERE id_ocupacion = ${connection.escape(id)}`
+        connection.query(sql, (err, _result) => {
+          if (err) {
+            throw err
+          } else {
+            callback(null, {
+              'msg': 'Deleted'
+            })
+          }
+        })
+      } else {
+        callback(null, {
+          'msg': 'not Exists'
+        })
+      }
+    })
+  }
+}
+
 // ============================
 //  Grado Estudios
 // ============================
 rutasBasicas.getEstudios = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM grado_estudios ORDER BY id_grado_estudios',
+    connection.query('SELECT * FROM grado_estudios WHERE estatus = 1 ORDER BY id_grado_estudios',
       (err, rows) => {
         if (err) {
           throw err
@@ -170,23 +230,6 @@ rutasBasicas.deleteEstudio = (id, callback) => {
         })
       }
     })
-  }
-}
-
-// ============================
-//  Servicios Basicos
-// ============================
-rutasBasicas.getServiciosBasicos = (callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM servicios_basicos ORDER BY id_servicio_basico',
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
   }
 }
 
@@ -264,91 +307,6 @@ rutasBasicas.deleteColonia = (id, callback) => {
         })
       }
     })
-  }
-}
-
-// ============================
-//  Comercios
-// ============================
-rutasBasicas.getComercios = (userData, callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM comercios ORDER BY id_comercio', userData,
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
-  }
-}
-
-// ============================
-//  Ganaderia
-// ============================
-rutasBasicas.getGanado = (userData, callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM ganaderia ORDER BY id_ganado', userData,
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
-  }
-}
-
-// ============================
-//  Hoticultura
-// ============================
-rutasBasicas.getHoticultura = (userData, callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM hoticultura ORDER BY id_hoticultura', userData,
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
-  }
-}
-
-// ============================
-//  Problemas Comunidad
-// ============================
-rutasBasicas.getProblemasComunidad = (userData, callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM problemas_comunidad ORDER BY id_problema', userData,
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
-  }
-}
-
-// ============================
-//  Servicios de Importancia
-// ============================
-rutasBasicas.getServiciosImportancia = (userData, callback) => {
-  if (connection) {
-    connection.query('SELECT * FROM servicios_de_importancia ORDER BY id_servicio', userData,
-      (err, rows) => {
-        if (err) {
-          throw err
-        } else {
-          callback(null, rows)
-        }
-      }
-    )
   }
 }
 
@@ -431,6 +389,146 @@ rutasBasicas.deleteProductoAgricola = (id, callback) => {
         })
       }
     })
+  }
+}
+
+// ============================
+//  Tablas Fuertes
+// ============================
+
+// ============================
+//  Servicios Basicos
+// ============================
+rutasBasicas.getServiciosBasicos = (callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM servicios_basicos ORDER BY id_servicio_basico',
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Servicios de Importancia
+// ============================
+rutasBasicas.getServiciosImportancia = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM servicios_de_importancia ORDER BY id_servicio', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Servicios Necesarios
+// ============================
+rutasBasicas.getServiciosNecesarios = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM servicios_necesarios ORDER BY id_servicio', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Problemas Comunidad
+// ============================
+rutasBasicas.getProblemasComunidad = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM problemas_comunidad ORDER BY id_problema', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Participacion Limpieza
+// ============================
+rutasBasicas.getParticipacionLimpieza = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM participacion_de_limpieza ORDER BY id_participacion', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Ganaderia
+// ============================
+rutasBasicas.getGanado = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM ganaderia ORDER BY id_ganado', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Hoticultura
+// ============================
+rutasBasicas.getHoticultura = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM hoticultura ORDER BY id_hoticultura', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Comercios
+// ============================
+rutasBasicas.getComercios = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM comercios ORDER BY id_comercio', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
   }
 }
 
