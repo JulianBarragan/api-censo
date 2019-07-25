@@ -28,6 +28,26 @@ module.exports = app => {
     })
   })
 
+  
+
+  // ============================
+  //  Servicios Basicos
+  // ============================
+  app.get('/rutas/servicios_basicos', (_req, res) => {
+    Rutas.getServiciosBasicos((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
+
+  // ============================
+  //  Barrios Colonias
+  // ============================
+  app.get('/rutas/colonias', (_req, res) => {
+    Rutas.getColonias((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
+
   app.post('/rutas/colonias', (req, res) => {
     const userData = {
       id_colonia: null,
@@ -47,24 +67,6 @@ module.exports = app => {
           msg: 'error'
         })
       }
-    })
-  })
-
-  // ============================
-  //  Servicios Basicos
-  // ============================
-  app.get('/rutas/servicios_basicos', (_req, res) => {
-    Rutas.getServiciosBasicos((_err, data) => {
-      res.status(200).json(data)
-    })
-  })
-
-  // ============================
-  //  Barrios Colonias
-  // ============================
-  app.get('/rutas/colonias', (_req, res) => {
-    Rutas.getColonias((_err, data) => {
-      res.status(200).json(data)
     })
   })
 

@@ -75,7 +75,7 @@ rutasBasicas.getServiciosBasicos = (callback) => {
 // ============================
 rutasBasicas.getColonias = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM barrios_colonias ORDER BY id_colonia',
+    connection.query('SELECT * FROM colonias ORDER BY id_colonia',
       (err, rows) => {
         if (err) {
           throw err
@@ -100,6 +100,30 @@ rutasBasicas.postColonias = (userData, callback) => {
         }
       }
     )
+  }
+}
+
+rutasBasicas.updateColonias = (userData, callback) => {
+  if (connection) {
+    const sql = `
+      UPDATE colonias SET 
+      nombre = ${connection.escape(userData.nombre)},
+      a_paterno = ${connection.escape(userData.a_paterno)},
+      a_materno = ${connection.escape(userData.a_materno)},
+      roll = ${connection.escape(userData.roll)},
+      contrasena = ${connection.escape(userData.contrasena)},
+      telefono = ${connection.escape(userData.telefono)} 
+      WHERE id_usuario = ${connection.escape(userData.id_usuario)}
+    `
+    connection.query(sql, (err, result) => {
+      if (err) {
+        throw err
+      } else {
+        callback(null, {
+          'msg': `Usuario Actualizado`
+        })
+      }
+    })
   }
 }
 
