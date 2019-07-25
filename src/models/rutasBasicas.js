@@ -7,7 +7,7 @@ let rutasBasicas = {}
 // ============================
 rutasBasicas.getCivil = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM estado_civil ORDER BY id_estado_civil',
+    connection.query('SELECT * FROM estado_civil WHERE id_estado_civil = 1 ORDER BY id_estado_civil',
       (err, rows) => {
         if (err) {
           throw err
