@@ -405,4 +405,37 @@ module.exports = app => {
   // ============================
   //  Familias Servicios Basicos
   // ============================
+  app.get('/rutas/familias_servicios_basicos', (_req, res) => {
+    Rutas.getFamiliasServiciosBasicos((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
+
+  // ============================
+  //  Familias Servicios de Importancia
+  // ============================
+
+  // ============================
+  //  Familias Servicios Necesarios
+  // ============================
+
+  // ============================
+  //  Familias Problemas Comunidad
+  // ============================
+
+  // ============================
+  //  Familias Participacion Limpieza
+  // ============================
+
+  // ============================
+  //  Familias Ganaderia
+  // ============================
+
+  // ============================
+  //  Familias Hoticultura
+  // ============================
+
+// ============================
+//  Familias Comercios
+// ============================
 }

@@ -538,5 +538,59 @@ rutasBasicas.getComercios = (userData, callback) => {
 // ============================
 //  Familias Servicios Basicos
 // ============================
+rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_servicios_basicos ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Familias Servicios de Importancia
+// ============================
+rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_servicios_de_importancia ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+// ============================
+//  Familias Servicios Necesarios
+// ============================
+
+// ============================
+//  Familias Problemas Comunidad
+// ============================
+
+// ============================
+//  Familias Participacion Limpieza
+// ============================
+
+// ============================
+//  Familias Ganaderia
+// ============================
+
+// ============================
+//  Familias Hoticultura
+// ============================
+
+// ============================
+//  Familias Comercios
+// ============================
 
 module.exports = rutasBasicas
