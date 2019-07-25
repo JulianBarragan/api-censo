@@ -532,4 +532,11 @@ rutasBasicas.getComercios = (userData, callback) => {
   }
 }
 
+// ============================
+//  Tablas Debiles
+// ============================
+// ============================
+//  Familias Servicios Basicos
+// ============================
+
 module.exports = rutasBasicas
