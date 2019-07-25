@@ -10,6 +10,60 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/estado_civil', (req, res) => {
+    const userData = {
+      id_estado_civil: null,
+      estado: req.body.estado
+    }
+    Rutas.postCivil(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Estado Civil Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
+  app.put('/rutas/estado_civil/:id_estado_civil', (req, res) => {
+    const userData = {
+      id_estado_civil: req.params.id_estado_civil,
+      estado: req.body.estado
+    }
+    Rutas.updateCivil(userData, (_err, data) => {
+      if (data && data.msg) {
+        res.json({ data })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
+  app.delete('/rutas/estado_civil/:id', (req, res) => {
+    Rutas.deleteCivil(req.params.id, (_err, data) => {
+      if ((data && data.msg) === 'Deleted' || data.msg === 'not Exists') {
+        res.json({
+          success: 'true',
+          data
+        })
+      } else {
+        res.status(500).json({
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Ocupaciones
   // ============================

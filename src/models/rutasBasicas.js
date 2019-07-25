@@ -19,6 +19,66 @@ rutasBasicas.getCivil = (callback) => {
   }
 }
 
+rutasBasicas.postCivil = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO estado_civil SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.updateCivil = (userData, callback) => {
+  if (connection) {
+    const sql = `
+      UPDATE estado_civil SET 
+      estado = ${connection.escape(userData.estado)}
+      WHERE id_estado_civil = ${connection.escape(userData.id_estado_civil)}
+    `
+    connection.query(sql, (err, result) => {
+      if (err) {
+        throw err
+      } else {
+        callback(null, {
+          'msg': `Estado Civil Actualizado`
+        })
+      }
+    })
+  }
+}
+
+rutasBasicas.deleteCivil = (id, callback) => {
+  if (connection) {
+    let sqlExists =
+      `SELECT * FROM estado_civil WHERE id_estado_civil = ${connection.escape(id)}`
+    connection.query(sqlExists, (_err, row) => {
+      if (row) {
+        let sql = `UPDATE estado_civil SET estatus = 0 WHERE id_estado_civil = ${connection.escape(id)}`
+        connection.query(sql, (err, _result) => {
+          if (err) {
+            throw err
+          } else {
+            callback(null, {
+              'msg': 'Deleted'
+            })
+          }
+        })
+      } else {
+        callback(null, {
+          'msg': 'not Exists'
+        })
+      }
+    })
+  }
+}
+
 // ============================
 //  Ocupaciones
 // ============================
