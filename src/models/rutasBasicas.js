@@ -252,7 +252,7 @@ rutasBasicas.getColonias = (callback) => {
 
 rutasBasicas.postColonias = (userData, callback) => {
   if (connection) {
-    connection.query('INSERT INTO barrios_colonias SET ?', userData,
+    connection.query('INSERT INTO colonias SET ?', userData,
       (err, result) => {
         if (err) {
           throw err
