@@ -37,43 +37,45 @@
 // module.exports = connection
 var mysql = require('mysql')
 
-var pool = mysql.createPool({
-  connectionLimit: 10,
+// connect to the db
+var dbConnectionInfo = {
   host: 'us-cdbr-iron-east-02.cleardb.net',
   user: 'b3537aa37ae113',
   password: '971809f6',
+  connectionLimit: 10, // mysql connection pool length
   database: 'heroku_46a1df53f8ac899'
+}
+
+// For mysql single connection
+/* var dbconnection = mysql.createConnection(
+        dbConnectionInfo
+);
+
+ dbconnection.connect(function (err) {
+    if (!err) {
+        console.log("Database is connected ... nn");
+    } else {
+        console.log("Error connecting database ... nn");
+    }
+});
+
+*/
+
+// create mysql connection pool
+var dbconnection = mysql.createPool(
+  dbConnectionInfo
+)
+
+// Attempt to catch disconnects
+dbconnection.on('connection', function (connection) {
+  console.log('DB Connection established')
+
+  connection.on('error', function (err) {
+    console.error(new Date(), 'MySQL error', err.code)
+  })
+  connection.on('close', function (err) {
+    console.error(new Date(), 'MySQL close', err)
+  })
 })
 
-var DB = (function () {
-  function _query (query, params, callback) {
-    pool.getConnection(function (err, connection) {
-      if (err) {
-        connection.release()
-        callback(null, err)
-        throw err
-      }
-
-      connection.query(query, params, function (err, rows) {
-        connection.release()
-        if (!err) {
-          callback(rows)
-        } else {
-          callback(null, err)
-        }
-      })
-
-      connection.on('error', function (err) {
-        connection.release()
-        callback(null, err)
-        throw err
-      })
-    })
-  };
-
-  return {
-    query: _query
-  }
-})()
-
-module.exports = DB
+module.exports = dbconnection
