@@ -30,7 +30,8 @@ module.exports = app => {
       familia_adulto: req.body.familia_adulto,
       cantidad_justa: req.body.cantidad_justa,
       fecha_registro: req.body.fecha_registro,
-      id_usuario: req.body.id_usuario
+      id_usuario: req.body.id_usuario,
+      estatusServer: req.body.estatusServer
     }
     Familias.insertFamilia(userData, (_err, data) => {
       if (data && data.insertId) {
@@ -72,7 +73,8 @@ module.exports = app => {
       familia_adulto: req.body.familia_adulto,
       cantidad_justa: req.body.cantidad_justa,
       fecha_registro: req.body.fecha_registro,
-      id_usuario: req.body.id_usuario
+      id_usuario: req.body.id_usuario,
+      estatusServer: req.body.estatusServer
     }
     Familias.updateFamilias(userData, (_err, data) => {
       if (data && data.msg) {

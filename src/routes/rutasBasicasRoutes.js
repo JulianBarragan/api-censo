@@ -414,28 +414,63 @@ module.exports = app => {
   // ============================
   //  Familias Servicios de Importancia
   // ============================
+  app.get('/rutas/familias_servicios_de_importancia', (_req, res) => {
+    Rutas.getFamiliasServiciosImportancia((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
   // ============================
   //  Familias Servicios Necesarios
   // ============================
+  app.get('/rutas/familias_servicios_necesarios', (_req, res) => {
+    Rutas.getFamiliasServiciosNecesarios((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
   // ============================
   //  Familias Problemas Comunidad
   // ============================
+  app.get('/rutas/familias_problemas_comunidad', (_req, res) => {
+    Rutas.getFamiliasProblemasComunidad((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
   // ============================
   //  Familias Participacion Limpieza
   // ============================
+  app.get('/rutas/familias_participacion_limpieza', (_req, res) => {
+    Rutas.getFamiliasParticipacionLimpieza((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
   // ============================
   //  Familias Ganaderia
   // ============================
+  app.get('/rutas/familias_ganaderias', (_req, res) => {
+    Rutas.getFamiliasGanaderias((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
   // ============================
   //  Familias Hoticultura
   // ============================
+  app.get('/rutas/familias_hoticultura', (_req, res) => {
+    Rutas.getFamiliasHoticultura((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 
-// ============================
-//  Familias Comercios
-// ============================
+  // ============================
+  //  Familias Comercios
+  // ============================
+  app.get('/rutas/familias_comercios', (_req, res) => {
+    Rutas.getFamiliasComercios((_err, data) => {
+      res.status(200).json(data)
+    })
+  })
 }

@@ -533,7 +533,7 @@ rutasBasicas.getComercios = (userData, callback) => {
 }
 
 // ============================
-//  Tablas Debiles
+//  TABLAS DEBILES
 // ============================
 // ============================
 //  Familias Servicios Basicos
@@ -555,7 +555,7 @@ rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
 // ============================
 //  Familias Servicios de Importancia
 // ============================
-rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
+rutasBasicas.getFamiliasServiciosImportancia = (userData, callback) => {
   if (connection) {
     connection.query('SELECT * FROM familias_servicios_de_importancia ORDER BY id_familia', userData,
       (err, rows) => {
@@ -572,25 +572,103 @@ rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
 // ============================
 //  Familias Servicios Necesarios
 // ============================
+rutasBasicas.getFamiliasServiciosNecesarios = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_servicios_necesarios ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 // ============================
 //  Familias Problemas Comunidad
 // ============================
+rutasBasicas.getFamiliasProblemasComunidad = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_problemas_comunidad ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 // ============================
 //  Familias Participacion Limpieza
 // ============================
+rutasBasicas.getFamiliasParticipacionLimpieza = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_participacion_de_limpieza ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 // ============================
 //  Familias Ganaderia
 // ============================
+rutasBasicas.getFamiliasGanaderias = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_ganaderia ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 // ============================
 //  Familias Hoticultura
 // ============================
+rutasBasicas.getFamiliasHoticultura = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_hoticultura ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 // ============================
 //  Familias Comercios
 // ============================
+rutasBasicas.getFamiliasComercios = (userData, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias_comercios ORDER BY id_familia', userData,
+      (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
 
 module.exports = rutasBasicas

@@ -56,6 +56,8 @@ familiasModel.updateFamilias = (userData, callback) => {
       familia_adulto = ${connection.escape(userData.familia_adulto)},
       cantidad_justa = ${connection.escape(userData.cantidad_justa)},
       fecha_registro = ${connection.escape(userData.fecha_registro)},
+      id_usuario = ${connection.escape(userData.id_usuario)},
+      estatusServer = ${connection.escape(userData.estatusServer)}
       WHERE id_familia = ${connection.escape(userData.id_familia)}
     `
     connection.query(sql, (err, _result) => {
