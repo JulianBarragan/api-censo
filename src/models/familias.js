@@ -1,4 +1,4 @@
-const connection = require('../server/connection2')
+const connection = require('../server/connection')
 
 let familiasModel = {}
 
