@@ -3,7 +3,7 @@ const mysql = require('mysql')
 let connection = null
 
 function handleDisconnect () {
-  connection = mysql.createConnection({
+  connection = mysql.createPool({
     host: 'us-cdbr-iron-east-02.cleardb.net',
     user: 'b3537aa37ae113',
     password: '971809f6',
