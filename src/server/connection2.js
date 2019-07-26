@@ -72,11 +72,24 @@ dbconnection.on('connection', function (connection) {
   console.log('DB Connection established')
 
   connection.on('error', function (err) {
+    console.log('db error', err)
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      dbconnection() // lost due to either server restart, or a
+    } else { // connnection idle timeout (the wait_timeout
+      throw err // server variable configures this)
+    }
+  })
+
+  connection.on('error', function (err) {
     console.error(new Date(), 'MySQL error', err.code)
   })
   connection.on('close', function (err) {
     console.error(new Date(), 'MySQL close', err)
   })
+
+  setInterval(function () {
+    connection.query('SELECT 1')
+  }, 5000)
 })
 
 module.exports = dbconnection
