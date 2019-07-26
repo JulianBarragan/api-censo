@@ -411,12 +411,57 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/familias_servicios_basicos', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_servicio_basico: req.body.id_servicio_basico
+    }
+    Rutas.postFamiliasServiciosBasicos(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Servicio Basico Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Familias Servicios de Importancia
   // ============================
   app.get('/rutas/familias_servicios_de_importancia', (_req, res) => {
     Rutas.getFamiliasServiciosImportancia((_err, data) => {
       res.status(200).json(data)
+    })
+  })
+
+  app.post('/rutas/familias_servicios_de_importancia', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_servicio: req.body.id_servicio,
+      posicion: req.body.id_posicion
+    }
+    Rutas.postFamiliasServiciosImportancia(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Servicio de Importancia Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
     })
   })
 
@@ -429,12 +474,56 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/familias_servicios_necesarios', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_servicio: req.body.id_servicio
+    }
+    Rutas.postFamiliasServiciosNecesarios(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Servicio Necesario Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Familias Problemas Comunidad
   // ============================
   app.get('/rutas/familias_problemas_comunidad', (_req, res) => {
     Rutas.getFamiliasProblemasComunidad((_err, data) => {
       res.status(200).json(data)
+    })
+  })
+
+  app.post('/rutas/familias_problemas_comunidad', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_problema: req.body.id_problema
+    }
+    Rutas.postFamiliasProblemasComunidad(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Problemas Comunidad Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
     })
   })
 
@@ -447,12 +536,56 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/familias_participacion_limpieza', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_participacion: req.body.id_participacion
+    }
+    Rutas.postFamiliasParticipacionLimpieza(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Limpieza Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Familias Ganaderia
   // ============================
   app.get('/rutas/familias_ganaderias', (_req, res) => {
     Rutas.getFamiliasGanaderias((_err, data) => {
       res.status(200).json(data)
+    })
+  })
+
+  app.post('/rutas/familias_ganaderias', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_ganaderia: req.body.id_ganaderia
+    }
+    Rutas.postFamiliasGanaderias(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Ganaderia Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
     })
   })
 
@@ -465,12 +598,56 @@ module.exports = app => {
     })
   })
 
+  app.post('/rutas/familias_hoticultura', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_hoticultura: req.body.id_hoticultura
+    }
+    Rutas.postFamiliasHoticultura(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Servicio Basico Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
+    })
+  })
+
   // ============================
   //  Familias Comercios
   // ============================
   app.get('/rutas/familias_comercios', (_req, res) => {
     Rutas.getFamiliasComercios((_err, data) => {
       res.status(200).json(data)
+    })
+  })
+
+  app.post('/rutas/familias_comercios', (req, res) => {
+    const userData = {
+      id_familia: req.body.id_familia,
+      id_comercio: req.body.id_comercio
+    }
+    Rutas.postFamiliasComercios(userData, (_err, data) => {
+      if (data && data.insertId) {
+        console.log(data)
+        res.json({
+          success: true,
+          msg: 'Familia Comercio Insertado',
+          data: data
+        })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'error'
+        })
+      }
     })
   })
 }

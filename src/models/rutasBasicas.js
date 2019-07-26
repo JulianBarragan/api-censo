@@ -7,7 +7,7 @@ let rutasBasicas = {}
 // ============================
 rutasBasicas.getCivil = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM estado_civil WHERE estatus = 1 ORDER BY id_estado_civil',
+    connection.query('SELECT * FROM estado_civil WHERE estatus = 1 ORDER BY id_estado_civil DESC',
       (err, rows) => {
         if (err) {
           throw err
@@ -84,7 +84,7 @@ rutasBasicas.deleteCivil = (id, callback) => {
 // ============================
 rutasBasicas.getOcupacion = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM ocupacion ORDER BY id_ocupacion',
+    connection.query('SELECT * FROM ocupacion WHERE estatus = 1 ORDER BY id_ocupacion DESC',
       (err, rows) => {
         if (err) {
           throw err
@@ -238,7 +238,7 @@ rutasBasicas.deleteEstudio = (id, callback) => {
 // ============================
 rutasBasicas.getColonias = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM colonias ORDER BY id_colonia',
+    connection.query('SELECT * FROM colonias WHERE estatus = 1 ORDER BY id_colonia DESC',
       (err, rows) => {
         if (err) {
           throw err
@@ -315,7 +315,7 @@ rutasBasicas.deleteColonia = (id, callback) => {
 // ============================
 rutasBasicas.getProductosAgricolas = (userData, callback) => {
   if (connection) {
-    connection.query('SELECT * FROM productos_agricolas ORDER BY id_producto', userData,
+    connection.query('SELECT * FROM productos_agricolas WHERE estatus = 1 ORDER BY id_producto DESC', userData,
       (err, rows) => {
         if (err) {
           throw err
@@ -552,6 +552,22 @@ rutasBasicas.getFamiliasServiciosBasicos = (userData, callback) => {
   }
 }
 
+rutasBasicas.postFamiliasServiciosBasicos = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_servicios_basicos SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
 // ============================
 //  Familias Servicios de Importancia
 // ============================
@@ -563,6 +579,22 @@ rutasBasicas.getFamiliasServiciosImportancia = (userData, callback) => {
           throw err
         } else {
           callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.postFamiliasServiciosImportancia = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_servicios_de_importancia SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
         }
       }
     )
@@ -586,6 +618,22 @@ rutasBasicas.getFamiliasServiciosNecesarios = (userData, callback) => {
   }
 }
 
+rutasBasicas.postFamiliasServiciosNecesarios = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_servicios_necesarios SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
 // ============================
 //  Familias Problemas Comunidad
 // ============================
@@ -597,6 +645,22 @@ rutasBasicas.getFamiliasProblemasComunidad = (userData, callback) => {
           throw err
         } else {
           callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.postFamiliasProblemasComunidad = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_problemas_comunidad SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
         }
       }
     )
@@ -620,6 +684,22 @@ rutasBasicas.getFamiliasParticipacionLimpieza = (userData, callback) => {
   }
 }
 
+rutasBasicas.postFamiliasParticipacionLimpieza = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_participacion_de_limpieza SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
 // ============================
 //  Familias Ganaderia
 // ============================
@@ -631,6 +711,22 @@ rutasBasicas.getFamiliasGanaderias = (userData, callback) => {
           throw err
         } else {
           callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.postFamiliasGanaderias = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_ganaderia SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
         }
       }
     )
@@ -654,6 +750,22 @@ rutasBasicas.getFamiliasHoticultura = (userData, callback) => {
   }
 }
 
+rutasBasicas.postFamiliasHoticultura = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_hoticultura SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
+        }
+      }
+    )
+  }
+}
+
 // ============================
 //  Familias Comercios
 // ============================
@@ -665,6 +777,22 @@ rutasBasicas.getFamiliasComercios = (userData, callback) => {
           throw err
         } else {
           callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
+rutasBasicas.postFamiliasComercios = (userData, callback) => {
+  if (connection) {
+    connection.query('INSERT INTO familias_comercios SET ?', userData,
+      (err, result) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, {
+            'insertId': result.insertId
+          })
         }
       }
     )
