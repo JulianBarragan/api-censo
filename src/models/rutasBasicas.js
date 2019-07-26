@@ -1,4 +1,4 @@
-const connection = require('../server/connection')
+const connection = require('../server/connection2')
 
 let rutasBasicas = {}
 
