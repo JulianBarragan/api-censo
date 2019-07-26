@@ -35,6 +35,7 @@
 // }, 5000)
 
 // module.exports = connection
+
 var mysql = require('mysql')
 
 // connect to the db
