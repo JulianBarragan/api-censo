@@ -10,7 +10,7 @@ module.exports = app => {
   app.post('/familias', (req, res) => {
     const userData = {
       id_familia: null,
-      nombre_famila: req.body.nombre_famila,
+      nombre_familia: req.body.nombre_familia,
       direccion: req.body.direccion,
       calle_lateral_derecha: req.body.calle_lateral_derecha,
       calle_lateral_izquierda: req.body.calle_lateral_izquierda,
@@ -31,7 +31,9 @@ module.exports = app => {
       cantidad_justa: req.body.cantidad_justa,
       fecha_registro: req.body.fecha_registro,
       id_usuario: req.body.id_usuario,
-      estatusServer: req.body.estatusServer
+      estatusServer: req.body.estatusServer,
+      representantes_comunidad: req.body.representantes_comunidad,
+      actividades_realizadas: req.body.actividades_realizadas
     }
     Familias.insertFamilia(userData, (_err, data) => {
       if (data && data.insertId) {
@@ -53,7 +55,7 @@ module.exports = app => {
   app.put('/familias/:id_familia', (req, res) => {
     const userData = {
       id_familia: req.params.id_familia,
-      nombre_famila: req.body.nombre_famila,
+      nombre_familia: req.body.nombre_familia,
       direccion: req.body.direccion,
       calle_lateral_derecha: req.body.calle_lateral_derecha,
       calle_lateral_izquierda: req.body.calle_lateral_izquierda,
@@ -74,7 +76,9 @@ module.exports = app => {
       cantidad_justa: req.body.cantidad_justa,
       fecha_registro: req.body.fecha_registro,
       id_usuario: req.body.id_usuario,
-      estatusServer: req.body.estatusServer
+      estatusServer: req.body.estatusServer,
+      representantes_comunidad: req.body.representantes_comunidad,
+      actividades_realizadas: req.body.actividades_realizadas
     }
     Familias.updateFamilias(userData, (_err, data) => {
       if (data && data.msg) {
