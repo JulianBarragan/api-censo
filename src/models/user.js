@@ -106,4 +106,5 @@ userModel.deleteUser = (id, callback) => {
     })
   }
 }
+
 module.exports = userModel

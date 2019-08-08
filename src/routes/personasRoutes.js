@@ -28,8 +28,7 @@ module.exports = app => {
       id_estado_civil: req.body.id_estado_civil,
       lugar_origen: req.body.lugar_origen,
       telefono: req.body.telefono,
-      id_usuario: req.body.id_usuario,
-      estatus: null
+      id_usuario: req.body.id_usuario
     }
     User.insertPersona(userData, (_err, data) => {
       if (data && data.insertId) {
@@ -62,8 +61,7 @@ module.exports = app => {
       id_estado_civil: req.body.id_estado_civil,
       lugar_origen: req.body.lugar_origen,
       telefono: req.body.telefono,
-      id_usuario: req.body.id_usuario,
-      estatus: null
+      id_usuario: req.body.id_usuario
     }
     User.updateUser(userData, (_err, data) => {
       if (data && data.msg) {
