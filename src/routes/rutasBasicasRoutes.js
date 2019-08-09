@@ -75,7 +75,7 @@ module.exports = app => {
 
   app.post('/rutas/ocupaciones', (req, res) => {
     const userData = {
-      id_estado_civil: null,
+      id_ocupacion: null,
       ocupacion: req.body.ocupacion
     }
     Rutas.postOcupacion(userData, (_err, data) => {
