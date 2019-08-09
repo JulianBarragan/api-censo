@@ -161,7 +161,7 @@ rutasBasicas.deleteOcupacion = (id, callback) => {
 // ============================
 rutasBasicas.getEstudios = (callback) => {
   if (connection) {
-    connection.query('SELECT * FROM grado_estudios WHERE estatus = 1 ORDER BY id_grado_estudios',
+    connection.query('SELECT * FROM grado_estudios WHERE estatus = 1 ORDER BY id_grado_estudios DESC',
       (err, rows) => {
         if (err) {
           throw err
