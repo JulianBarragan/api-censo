@@ -35,6 +35,7 @@ app.listen(app.get('port'), () => {
 
 // Routes
 require('./routes/userRoutes')(app)
+require('./routes/graficasRoutes')(app)
 require('./routes/personasRoutes')(app)
 require('./routes/familiasRoutes')(app)
 require('./routes/rutasBasicasRoutes')(app)
