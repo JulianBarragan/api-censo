@@ -340,7 +340,7 @@ module.exports = app => {
   //  Servicios de Importancia
   // ============================
   app.get('/rutas/servicios_importancia', (_req, res) => {
-    Rutas.getProblemasComunidad((_err, data) => {
+    Rutas.getServiciosImportancia((_err, data) => {
       res.status(200).json(data)
     })
   })
