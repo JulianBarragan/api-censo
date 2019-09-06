@@ -16,6 +16,20 @@ familiasModel.getFamilias = (callback) => {
   }
 }
 
+familiasModel.getFamilyById = (userId, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM familias WHERE `estatus` = 1 AND `id_familia` = ? ORDER BY id_familia DESC',
+      (userId), (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
 familiasModel.insertFamilia = (userData, callback) => {
   if (connection) {
     connection.query('INSERT INTO familias SET ?', userData,

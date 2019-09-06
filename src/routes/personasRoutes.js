@@ -13,6 +13,20 @@ module.exports = app => {
     })
   })
 
+  app.get('/personas/:id_persona', (req, res) => {
+    const idUser = req.params.id_persona
+    User.getPersonasByIdById(idUser, (_err, data) => {
+      if (data) {
+        res.json({ data })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
   app.post('/personas', (req, res) => {
     const userData = {
       id_persona: null,

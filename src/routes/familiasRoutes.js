@@ -7,6 +7,20 @@ module.exports = app => {
     })
   })
 
+  app.get('/familias/:id_familia', (req, res) => {
+    const idUser = req.params.id_familia
+    Familias.getFamilyByIdById(idUser, (_err, data) => {
+      if (data) {
+        res.json({ data })
+      } else {
+        res.status(500).json({
+          success: false,
+          msg: 'Error'
+        })
+      }
+    })
+  })
+
   app.post('/familias', (req, res) => {
     const userData = {
       id_familia: null,

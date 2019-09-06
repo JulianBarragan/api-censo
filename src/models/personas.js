@@ -17,6 +17,20 @@ personasModel.getUser = (callback) => {
   }
 }
 
+personasModel.getPersonasById = (userId, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM personas WHERE `estatus` = 1 AND `id_persona` = ? ORDER BY id_persona DESC',
+      (userId), (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
 personasModel.getUserInner = (callback) => {
   if (connection) {
     connection.query('SELECT personas.id_persona, personas.primer_nombre, personas.segundo_nombre, personas.a_paterno, personas.a_materno, personas.sexo, personas.fecha_nacimiento, grado_estudios.estudios, personas.escuela, ocupacion.ocupacion, estado_civil.estado, personas.lugar_origen, personas.telefono, familias.nombre_familia, colonias.colonia, familias.direccion, familias.calle_lateral_derecha, familias.calle_lateral_izquierda FROM personas INNER JOIN familias ON id_persona = id_persona INNER JOIN colonias ON familias.id_colonia = colonias.id_colonia INNER JOIN grado_estudios ON personas.id_grado_estudios = grado_estudios.id_grado_estudios INNER JOIN ocupacion ON personas.id_ocupacion = ocupacion.id_ocupacion INNER JOIN estado_civil ON personas.id_estado_civil = estado_civil.id_estado_civil WHERE personas.estatus = 1 ORDER BY id_persona DESC;',

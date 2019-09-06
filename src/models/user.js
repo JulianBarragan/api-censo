@@ -17,6 +17,20 @@ userModel.getUser = (callback) => {
   }
 }
 
+userModel.getUserById = (userId, callback) => {
+  if (connection) {
+    connection.query('SELECT * FROM usuarios WHERE `estatus` = 1 AND `id_usuario` = ? ORDER BY id_usuario DESC',
+      (userId), (err, rows) => {
+        if (err) {
+          throw err
+        } else {
+          callback(null, rows)
+        }
+      }
+    )
+  }
+}
+
 userModel.insertUser = (userData, callback) => {
   if (connection) {
     connection.query('INSERT INTO usuarios SET ?', userData,
