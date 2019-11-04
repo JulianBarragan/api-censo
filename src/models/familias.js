@@ -4,7 +4,7 @@ let familiasModel = {}
 
 familiasModel.getFamilias = (callback) => {
     if (connection) {
-        connection.query('SELECT * FROM familias WHERE estatus = 1 ORDER BY id_familia',
+        connection.query('SELECT * FROM familia WHERE estatus = 1 ORDER BY id_familia',
             (err, rows) => {
                 if (err) {
                     throw err
@@ -18,7 +18,7 @@ familiasModel.getFamilias = (callback) => {
 
 familiasModel.getFamilyById = (userId, callback) => {
     if (connection) {
-        connection.query('SELECT * FROM familias WHERE `estatus` = 1 AND `id_familia` = ? ORDER BY id_familia DESC',
+        connection.query('SELECT * FROM familia WHERE `estatus` = 1 AND `id_familia` = ? ORDER BY id_familia DESC',
             (userId), (err, rows) => {
                 if (err) {
                     throw err
@@ -32,7 +32,7 @@ familiasModel.getFamilyById = (userId, callback) => {
 
 familiasModel.insertFamilia = (userData, callback) => {
     if (connection) {
-        connection.query('INSERT INTO familias SET ?', userData,
+        connection.query('INSERT INTO familia SET ?', userData,
             (err, result) => {
                 if (err) {
                     throw err
@@ -49,8 +49,8 @@ familiasModel.insertFamilia = (userData, callback) => {
 familiasModel.updateFamilias = (userData, callback) => {
     if (connection) {
         const sql = `
-     UPDATE familias SET 
-      nombre_familias = ${connection.escape(userData.nombre_familias)},
+     UPDATE familia SET 
+      nombre_familia = ${connection.escape(userData.nombre_familias)},
       direccion = ${connection.escape(userData.direccion)},
       calle_lateral_derecha = ${connection.escape(userData.calle_lateral_derecha)},
       calle_lateral_izquierda = ${connection.escape(userData.calle_lateral_izquierda)},
@@ -89,7 +89,7 @@ familiasModel.updateFamilias = (userData, callback) => {
 familiasModel.deleteFamilia = (id, callback) => {
     if (connection) {
         let sqlExists =
-            `SELECT * FROM familias WHERE id_familia = ${connection.escape(id)}`
+            `SELECT * FROM familia WHERE id_familia = ${connection.escape(id)}`
         connection.query(sqlExists, (_err, row) => {
             if (row) {
                 let sql = `UPDATE familia SET estatus = 0 WHERE id_familia = ${connection.escape(id)}`
